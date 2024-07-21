@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " nodemon ./src/index.js"
+    "start": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,20 +12,35 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "connect-pg-simple": "^9.0.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
+    "ejs": "^3.1.10",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "joi": "^17.12.0",
     "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
-    "pg": "^8.11.3",
+    "passport-google-oauth2": "^0.2.0",
+    "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
     "pug": "^3.0.2",
-    "sequelize": "^6.35.2"
+    "sequelize": "^6.35.2",
+    "socket.io": "^4.7.5",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "ejs": "^3.1.9",
-    "nodemon": "^3.0.3"
+    "@faker-js/faker": "^8.3.1",
+    "@mermaid-js/mermaid-cli": "^10.8.0",
+    "ejs": "^3.1.10",
+    "nodemon": "^3.0.3",
+    "prisma": "^5.15.0",
+    "prisma-erd-generator": "^1.2.5",
+    "sequelize-cli": "^6.6.2"
   }
 }

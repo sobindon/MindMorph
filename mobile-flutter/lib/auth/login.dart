@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:morph/auth/sign.dart';
 import 'package:morph/auth/signup.dart';
 import 'package:morph/const/color.dart';
 import 'package:morph/const/fonts.dart';
@@ -16,8 +17,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _obscureText = true;
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,10 @@ class _LoginState extends State<Login> {
             children: [
               50.heightBox,
               Align(
-                child: Container(
-                  child: Lottie.asset('assets/images/login.json'),
+                child: SizedBox(
                   height: 200,
                   width: 200,
+                  child: Lottie.asset('assets/images/login.json'),
                 ),
               ),
               const Divider(
@@ -84,7 +85,7 @@ class _LoginState extends State<Login> {
                           _obscureText
                               ? Icons.visibility
                               : Icons.visibility_off,
-                          color: Color.fromARGB(255, 65, 60, 75),
+                          color: const Color.fromARGB(255, 65, 60, 75),
                         ),
                         onPressed: () {
                           setState(() {
@@ -116,7 +117,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     onPressed: () {
-                      Get.to(() => Home());
+                      Get.to(() => const Home());
                     },
                     child: 'Log In'
                         .text
@@ -139,7 +140,7 @@ class _LoginState extends State<Login> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.to(() => Signup());
+                          Get.to(() => SignupForm()); // Signup
                         },
                         child: 'Sign up  '
                             .text

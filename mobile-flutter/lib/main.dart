@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demoo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 60, 56, 66)),
         useMaterial3: true,
       ),
       home: SplashScreen(),

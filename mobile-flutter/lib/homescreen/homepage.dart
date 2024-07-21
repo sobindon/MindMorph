@@ -9,7 +9,7 @@ import 'package:morph/elementlist/ratingvaluelist.dart';
 import 'package:morph/elementlist/stringlist.dart';
 import 'package:morph/homescreen/cartscreen/cartscreen.dart';
 import 'package:morph/homescreen/profile.dart/account.dart';
-import 'package:morph/searcheswdget/search.dart';
+import 'package:morph/homescreen/searchpage.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Homepage extends StatefulWidget {
@@ -39,7 +39,7 @@ class _HomepageState extends State<Homepage> {
                   )),
               height: 50,
               child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                         color: titlecolor,
@@ -58,7 +58,7 @@ class _HomepageState extends State<Homepage> {
                     IconButton(
                       color: titlecolor,
                       onPressed: () {
-                        Get.to(() => const search());
+                        Get.to(() => Search());
                       },
                       icon: const Icon(Icons.search),
                     ),
@@ -95,20 +95,20 @@ class _HomepageState extends State<Homepage> {
                   ),
                   20.heightBox,
                   Align(
+                    alignment: Alignment.topLeft,
                     child: "Top courses"
                         .text
                         .color(FeatureColor)
                         .bold
                         .size(25)
                         .make(),
-                    alignment: Alignment.topLeft,
                   ),
                   5.heightBox,
                   Card(
                     color: backgrounghilghtcolor,
                     shadowColor: const Color.fromARGB(255, 17, 17, 16),
                     clipBehavior: Clip.hardEdge,
-                    child: Container(
+                    child: SizedBox(
                       height: 170,
                       width: 500,
                       child: SingleChildScrollView(
@@ -142,20 +142,20 @@ class _HomepageState extends State<Homepage> {
                   ),
                   20.heightBox,
                   Align(
-                    child: "Top courses"
+                    alignment: Alignment.topLeft,
+                    child: "Features course "
                         .text
                         .color(FeatureColor)
                         .bold
                         .size(25)
                         .make(),
-                    alignment: Alignment.topLeft,
                   ),
                   5.heightBox,
                   Card(
                     color: backgrounghilghtcolor,
                     shadowColor: const Color.fromARGB(255, 17, 17, 16),
                     clipBehavior: Clip.hardEdge,
-                    child: Container(
+                    child: SizedBox(
                       height: 170,
                       width: 500,
                       child: SingleChildScrollView(
@@ -189,20 +189,20 @@ class _HomepageState extends State<Homepage> {
                   ),
                   20.heightBox,
                   Align(
-                    child: "Top courses"
+                    alignment: Alignment.topLeft,
+                    child: "Trending Course"
                         .text
                         .color(FeatureColor)
                         .bold
                         .size(25)
                         .make(),
-                    alignment: Alignment.topLeft,
                   ),
                   5.heightBox,
                   Card(
                     color: backgrounghilghtcolor,
                     shadowColor: const Color.fromARGB(255, 17, 17, 16),
                     clipBehavior: Clip.hardEdge,
-                    child: Container(
+                    child: SizedBox(
                       height: 170,
                       width: 500,
                       child: SingleChildScrollView(

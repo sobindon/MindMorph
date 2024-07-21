@@ -10,10 +10,10 @@ class demopage extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         color: Vx.gray400,
-        child: Text(
+        child: const Text(
           "kam huna baki xa hai ta :)",
           style: TextStyle(
-              color: const Color.fromARGB(255, 251, 248, 247), fontSize: 20),
+              color: Color.fromARGB(255, 251, 248, 247), fontSize: 20),
         ),
       ),
     );

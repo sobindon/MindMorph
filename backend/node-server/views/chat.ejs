@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../public/css/chat.css" />
+    <title>Chat app</title>
+  </head>
+  <body>
+    <h1 class="title">iChat 💬</h1>
+    <div class="main">
+      <div class="name">
+        <span><i class="far fa-user"></i></span>
+      </div>
+
+      <ul class="message-container" id="message-container"></ul>
+
+      <form class="message-form" id="message-form">
+<<<<<<< HEAD
+        <div>
+          <input
+          type="text"
+          name="senderId"
+          placeholder="sender Id"
+        />
+        <input
+        type="text"
+        name="receiverId"
+        placeholder="receiver Id"
+      />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="message"
+            id="message-input"
+            class="message-input"
+          />
+          <div class="v-divider"></div>
+          <button type="submit" class="send-button">
+            send <span><i class="fas fa-paper-plane"></i></span>
+          </button>
+        </div>
+=======
+        <input
+          type="text"
+          name="message"
+          id="message-input"
+          class="message-input"
+        />
+        <div class="v-divider"></div>
+        <button type="submit" class="send-button">
+          send <span><i class="fas fa-paper-plane"></i></span>
+        </button>
+>>>>>>> oauth
+      </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../src/socket/socket.js"></script>
+
+    <script>
+      const socket = io();
+      const senderId = 1; // Replace with dynamic value as needed
+      const receiverId = 2; // Replace with dynamic value as needed
+      const roomId = [senderId, receiverId].sort().join();
+
+      socket.on("connect", () => {
+        console.log("Connected to socket server");
+
+        // Join the user room
+        socket.emit("join-room", roomId);
+      });
+
+      // Send a message
+      function sendMessage(message) {
+        const messageData = {
+          senderId,
+          receiverId,
+          message,
+          roomId
+        };
+        socket.emit("send-message", messageData);
+      }
+
+      // Handle form submission
+      document.getElementById("message-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const message = document.getElementById("message-input").value;
+        sendMessage(message);
+        document.getElementById("message-input").value = ''; // Clear the input field
+      });
+
+      // Receive a message
+      socket.on("receive-message", (message) => {
+        console.log("New message:", message);
+        // Display the message
+        const messageContainer = document.getElementById("message-container");
+        const messageElement = document.createElement("li");
+        messageElement.textContent = message.message;
+        messageContainer.appendChild(messageElement);
+      });
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js"
+      integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../public/css/main.js"></script>
+  </body>
+</html>

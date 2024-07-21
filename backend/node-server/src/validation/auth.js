@@ -1,32 +1,29 @@
-function validateUser(username, email, password) {
-    if (username == '' || email == '' || password == '') {
-        return {
-          status: 'Failed',
-          message: 'Empty inputs'
-        };
-      } else if (!/^[a-zA-Z]*$/.test(username)) {
-        return {
-          status: 'Failed',
-          Message: "Name should only contain letters"
-        };
-      } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-        return {
-          status: "Failed",
-          message: "invalid email"
-        };
-      }
-      else if (password.length < 8) {
-        return {
-          status: "Failed",
-          message: "password too short"
-        };
-      } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
-        return {
-          status: 'Failed',
-          message: 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character'
-        };
-      }
-    
-}
+const { OAuthProvider } = require('@prisma/client');
+const Joi = require('joi');
 
-module.exports = validateUser;
+const user = Joi.object({
+  fullName: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+  role: Joi.string().valid('STUDENT', 'INSTRUCTOR', 'ADMIN').required(),
+  avatar: Joi.string().uri(),
+  birthdate: Joi.date().iso(),
+  oauthId: Joi.string(),
+  OAuthProvider: Joi.string()
+});
+
+const loginCredential = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+});
+
+const oauth2 = Joi.object({
+  googleId: Joi.string(),
+  displayName: Joi.string(),
+  firstName: Joi.string(),
+  lastName: Joi.string(),
+  image: Joi.string().uri(),
+  email: Joi.string().email()
+})
+
+module.exports = { user, loginCredential, oauth2 };

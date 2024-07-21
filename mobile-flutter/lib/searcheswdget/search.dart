@@ -21,7 +21,7 @@ class _searchState extends State<search> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: EasySearchBar(
-          title: Text('search.....'),
+          title: const Text('search.....'),
           backgroundColor: Colors.transparent,
           onSearch: (value) => setState(() => searchValue = value),
           suggestions: _suggestions),

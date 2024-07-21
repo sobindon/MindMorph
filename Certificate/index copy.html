@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Pinyon+Script|Rochester">
+    <style>
+        .cursive {
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .sans {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .underline {
+            border-bottom: 1px solid #777;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+
+        .margin-0 {
+            margin: 0;
+        }
+
+        .padding-0 {
+            padding: 0;
+        }
+
+        .pm-empty-space {
+            height: 40px;
+            width: 100%;
+        }
+
+        body {
+            padding: 20px 0;
+            background: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .pm-certificate-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: url('./certificate.png') no-repeat center center;
+            background-size: cover;
+            padding: 30px;
+            color: #333;
+            font-family: 'Open Sans', sans-serif;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+        }
+
+        .outer-border {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            box-sizing: border-box;
+        }
+
+        .inner-border {
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            border: 2px solid #fff;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+
+        .pm-certificate-border {
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            padding: 0;
+            border: 1px solid #E1E5F0;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pm-certificate-header {
+            margin-bottom: 10px;
+        }
+
+        .pm-certificate-title h2 {
+            font-size: 34px;
+        }
+
+        .pm-certificate-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pm-name-text {
+            font-size: 20px;
+        }
+
+        .pm-earned {
+            margin: 15px 0 20px;
+        }
+
+        .pm-earned-text {
+            font-size: 20px;
+        }
+
+        .pm-credits-text {
+            font-size: 15px;
+        }
+
+        .pm-certified {
+            font-size: 12px;
+        }
+
+        .pm-certificate-footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .pm-certificate-container {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .outer-border {
+                width: 100%;
+                height: auto;
+            }
+
+            .inner-border {
+                width: calc(100% - 10px);
+                height: auto;
+                margin: 5px;
+            }
+
+            .pm-certificate-border {
+                width: calc(100% - 20px);
+                height: auto;
+                margin: 10px;
+                padding: 10px;
+            }
+
+            .pm-certificate-title h2 {
+                font-size: 24px;
+            }
+
+            .pm-name-text, .pm-earned-text {
+                font-size: 18px;
+            }
+
+            .pm-credits-text {
+                font-size: 14px;
+            }
+
+            .pm-certificate-footer {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .pm-certificate-footer div {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pm-certificate-container">
+        <div class="pm-certificate-border">
+            <div class="pm-certificate-header">
+                <h1 class="cursive pm-certificate-title">Certificate of Achievement</h1>
+            </div>
+            <div class="pm-certificate-body">
+                <p class="sans pm-name-text">This is to certify that</p>
+                <h2 class="cursive">John Doe</h2>
+                <p class="sans pm-earned-text">has successfully completed the</p>
+                <h3 class="cursive pm-credits-text">Web Development Course</h3>
+                <p class="sans">on</p>
+                <h4 class="cursive">June 25, 2024</h4>
+            </div>
+            <div class="pm-certificate-footer">
+                <div class="pm-certified">
+                    <p class="underline">________________________</p>
+                    <p>Signature</p>
+                </div>
+                <div class="pm-certified">
+                    <p>Issued by</p>
+                    <h3 class="cursive">XYZ Academy</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

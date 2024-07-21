@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+// import 'package:morph/auth/log.dart';
 import 'package:morph/auth/login.dart';
 import 'package:morph/const/color.dart';
 import 'package:morph/const/fonts.dart';
@@ -16,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   change() {
     Future.delayed(const Duration(seconds: 4), () {
-      Get.to(() => Login());
+      Get.to(() => const Login()); //LoginScreen());
     });
   }
 
@@ -26,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: themecolor,
@@ -35,10 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
             150.heightBox,
             Align(
                 alignment: Alignment.center,
-                child: Container(
-                  child: Lottie.asset('assets/images/splashscreen.json'),
+                child: SizedBox(
                   height: 300,
                   width: 300,
+                  child: Lottie.asset('assets/images/splashscreen.json'),
                 )),
             "MINDMORPH"
                 .text

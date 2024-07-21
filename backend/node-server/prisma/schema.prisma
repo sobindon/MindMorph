@@ -1,0 +1,288 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "../ERD.svg"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model OAuthUser {
+  id            Int            @id @default(autoincrement())
+  fullName      String
+  email         String
+  avatarUrl     String?
+  oauthId       String
+  oauthProvider OAuthProvider?
+  socialHandle  SocialHandle[]
+}
+
+model SocialHandle {
+  id          Int       @id @default(autoincrement())
+  website     String?   @unique
+  twitter     String?   @unique
+  youtube     String?   @unique
+  linkdin     String?   @unique
+  facebook    String?   @unique
+  userId      Int?      @unique
+  google      String?   @unique
+  oAuthUserId Int
+  OAuthUser   OAuthUser @relation(fields: [oAuthUserId], references: [id])
+  user        User?     @relation(fields: [userId], references: [id])
+}
+
+model CourseDomain {
+  id               Int              @id @default(autoincrement())
+  name             String
+  courseCategories CourseCategory[]
+}
+
+model CourseCategory {
+  id             Int          @id @default(autoincrement())
+  name           String
+  courseDomainId Int
+  courseId       Course[]
+  coursedomain   CourseDomain @relation(fields: [courseDomainId], references: [id])
+  Game           Game[]
+}
+
+model Course {
+  id               Int              @id @default(autoincrement())
+  courseCategoryId Int
+  language         Language         @default(English)
+  price            Float
+  discountPercent  Float?
+  rating           Float?
+  ratingCount      Int              @default(0)
+  enrollCount      Int              @default(0)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  authorId         Int
+  Assignment       Assignment[]
+  cart             Cart[]
+  author           User             @relation(fields: [authorId], references: [id])
+  courseCategory   CourseCategory   @relation(fields: [courseCategoryId], references: [id])
+  courseReview     CourseReview[]
+  EnrolledCourse   EnrolledCourse[]
+  qna              QnA[]
+}
+
+model CourseReview {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  description String   @db.VarChar(500)
+  rating      Float
+  updatedAt   DateTime @updatedAt
+  courseId    Int
+  course      Course   @relation(fields: [courseId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model CourseReviewReply {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  description    String   @db.VarChar(500)
+  updatedAt      DateTime @updatedAt
+  idCourseReview Int
+  User           User     @relation(fields: [userId], references: [id])
+}
+
+model QnA {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  description   String   @db.VarChar(500)
+  updatedAt     DateTime @updatedAt
+  responseCount Int      @default(0)
+  courseId      Int
+  course        Course   @relation(fields: [courseId], references: [id])
+  user          User     @relation(fields: [userId], references: [id])
+}
+
+model QnAReply {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  description String   @db.VarChar(500)
+  updatedAt   DateTime @updatedAt
+  idQnA       Int
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Cart {
+  id         Int      @id @default(autoincrement())
+  courseId   Int
+  userId     Int
+  craetedAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isCheckout Boolean
+  course     Course   @relation(fields: [courseId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model EnrolledCourse {
+  id         Int      @id @default(autoincrement())
+  courseId   Int
+  userId     Int
+  enrolledAt DateTime @default(now())
+  course     Course   @relation(fields: [courseId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id                   Int                    @id @default(autoincrement())
+  fullName             String
+  email                String                 @unique
+  password             String
+  role                 Role                   @default(STUDENT)
+  avatar               String?
+  birthdate            DateTime?
+  createdAt            DateTime               @default(now())
+  oauthId              String?
+  oauthProvider        OAuthProvider?
+  Assignment           Assignment[]
+  AssignmentSubmission AssignmentSubmission[]
+  cart                 Cart[]
+  course               Course[]
+  courseReview         CourseReview[]
+  courseReviewReply    CourseReviewReply[]
+  EnrolledCourse       EnrolledCourse[]
+  GameView             GameView[]
+  receivedMessages     Message[]              @relation("receivedMessages")
+  sentMessages         Message[]              @relation("sentMessages")
+  qna                  QnA[]
+  QnAReply             QnAReply[]
+  SearchHistory        SearchHistory[]
+  socialHandle         SocialHandle?
+  conversation         Conversation[]   
+}
+
+model Message {
+  id             Int           @id @default(autoincrement())
+  message        String
+  senderId       Int
+  receiverId     Int
+  conversationId Int
+  createdAt      DateTime      @default(now())
+  Conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  receiver       User          @relation("receivedMessages", fields: [receiverId], references: [id])
+  sender         User          @relation("sentMessages", fields: [senderId], references: [id])
+}
+
+model Conversation {
+  id           Int       @id @default(autoincrement())
+  createdAt    DateTime  @default(now())
+  messages     Message[]
+  participants User[]    
+}
+
+model Game {
+  id               Int                @id @default(autoincrement())
+  viewsCount       Int                @default(0)
+  courseCategoryId Int
+  courseCategory   CourseCategory     @relation(fields: [courseCategoryId], references: [id])
+  GameView         GameView[]
+  gamificationData GamificationData[]
+}
+
+model GamificationData {
+  id       Int     @id @default(autoincrement())
+  text     String
+  imageUrl String?
+  gameId   Int
+  game     Game    @relation(fields: [gameId], references: [id], onDelete: Cascade)
+}
+
+model GameView {
+  id       Int    @id @default(autoincrement())
+  userId   Int
+  gameId   Int
+  viewTime String
+  game     Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Payment {
+  paymentMethod String
+  amount        Float
+  id            Int         @id @default(autoincrement())
+  txnId         Int         @unique
+  userId        Int
+  courseId      Int
+  createdAt     DateTime    @default(now())
+  transaction   Transaction @relation(fields: [txnId], references: [id])
+}
+
+model Transaction {
+  amt       Float
+  oid       String   @unique
+  refid     String
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  payment   Payment?
+}
+
+model Assignment {
+  id                   Int                    @id @default(autoincrement())
+  courseId             Int
+  title                String
+  instruction          String
+  deadline             DateTime
+  points               Float
+  attachment           String
+  instructorId         Int
+  createdAt            DateTime               @default(now())
+  Course               Course                 @relation(fields: [courseId], references: [id])
+  User                 User                   @relation(fields: [instructorId], references: [id])
+  AssignmentSubmission AssignmentSubmission[]
+}
+
+model AssignmentSubmission {
+  id           Int        @id @default(autoincrement())
+  assignmentId Int
+  studentId    Int
+  attachment   String
+  points       Float      @default(0)
+  feedback     String     @default("")
+  submittedAt  DateTime   @default(now())
+  comment      String     @default("")
+  isReturn     Boolean    @default(false)
+  Assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  User         User       @relation(fields: [studentId], references: [id])
+}
+
+model SearchHistory {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  query  String
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Swiper {
+  id        Int     @id @default(autoincrement())
+  image     String
+  isVisible Boolean @default(true)
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+enum OAuthProvider {
+  GOOGLE
+  FACEBOOK
+  MICROSOFT
+  GITHUB
+  TWITTER
+}
+
+enum Language {
+  English
+  Nepali
+  Hindi
+}

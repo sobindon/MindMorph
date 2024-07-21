@@ -52,6 +52,7 @@ class Cartpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: FeatureColor),
         toolbarHeight: 80,
         shadowColor: Colors.white,
         foregroundColor: Colors.red,

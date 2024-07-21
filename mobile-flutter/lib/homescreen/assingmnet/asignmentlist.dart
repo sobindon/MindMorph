@@ -24,7 +24,7 @@ class assignmentlist extends StatelessWidget {
         coursename: 'fllutter basic'),
     User(
         UrlAvatar:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQgWejE2_K0DKRYUP09A1nuMu6CuIs3oULFak4QA4YLA&s',
+            'shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQgWejE2_K0DKRYUP09A1nuMu6CuIs3oULFak4QA4YLA&',
         assignment: 'Assignment 2',
         coursename: 'java full course'),
     User(

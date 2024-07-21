@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:morph/Controller/homecontroller.dart';
 import 'package:morph/const/color.dart';
-import 'package:morph/homescreen/assingmnet/asignmentlist.dart';
+import 'package:morph/homescreen/Enrolledcourse/enrollcourse.dart';
+import 'package:morph/homescreen/MCQ/courseMcqlist.dart';
 import 'package:morph/homescreen/homepage.dart';
-import 'package:morph/homescreen/searchpage.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -15,22 +15,22 @@ class Home extends StatelessWidget {
     var navigitem = const [
       BottomNavigationBarItem(
         icon: Icon(Icons.assignment),
-        label: 'Assignment',
+        label: 'MCQ',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.home),
         label: 'Home',
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.search),
-        label: 'Search',
+        icon: Icon(Icons.book_sharp),
+        label: 'My learning',
       ),
     ];
 
     var itembody = [
-      assignmentlist(),
-      Homepage(),
-      Search(),
+      Coursesmcqlist(),
+      const Homepage(),
+      Enrolledcourse(),
     ];
     return Scaffold(
       body: Column(
@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           currentIndex: controller.currentnavIndex.value,
-          selectedItemColor: Color.fromARGB(255, 253, 252, 255),
+          selectedItemColor: const Color.fromARGB(255, 253, 252, 255),
           unselectedItemColor: titlecolor,
           backgroundColor: boxcolor,
           type: BottomNavigationBarType.fixed,

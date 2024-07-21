@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Course" ALTER COLUMN "discountPercent" DROP NOT NULL,
+ALTER COLUMN "rating" DROP NOT NULL,
+ALTER COLUMN "ratingCount" SET DEFAULT 0,
+ALTER COLUMN "enrollCount" SET DEFAULT 0;

@@ -177,8 +177,9 @@ class _AsignmnetState extends State<Asignmentpage> {
                         children: [
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(255, 86, 119, 142),
-                                onPrimary: Colors.white,
+                                foregroundColor: Colors.white,
+                                backgroundColor:
+                                    Color.fromARGB(255, 86, 119, 142),
                                 elevation: 5,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -190,8 +191,9 @@ class _AsignmnetState extends State<Asignmentpage> {
                               child: Text('select')),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(255, 86, 119, 142),
-                                onPrimary: Colors.white,
+                                foregroundColor: Colors.white,
+                                backgroundColor:
+                                    Color.fromARGB(255, 86, 119, 142),
                                 elevation: 5,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),

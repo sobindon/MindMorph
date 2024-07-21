@@ -1,0 +1,88 @@
+body {
+    font-family: 'Dancing Script', cursive;
+    /* background-image: url('./certificate.png'); */
+    display: flex; 
+    justify-content: center;
+  align-items: center;
+    /* height: 80vh; */
+    /* width: 100vw; */
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#border{
+    width: 100%;
+}
+
+#container{
+    /* background-color: rgb(128, 128, 150); */
+    /* width: 74%; */
+    /* margin-top: 10vw; */
+    text-align: center;
+    position: absolute;
+    /* vertical-align: middle; */
+    width: 60%;
+}
+
+
+
+/* Header */
+.certificate-header {
+    font-size: 2.5em;
+    color: #2980b9;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-family: 'Great Vibes', cursive;
+    /* letter-spacing: 0.1ch; */
+}
+
+/* Body */
+.certificate-body p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.certificate-body h2 {
+    font-size: 2em;
+    margin: 10px 0;
+    color: #27ae60;
+    font-family: 'Great Vibes', cursive;
+}
+
+.certificate-body h3 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #e74c3c;
+    font-family: 'Great Vibes', cursive;
+}
+
+.certificate-body h4 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #8e44ad;
+    font-family: 'Great Vibes', cursive;
+}
+
+
+/* Footer */
+.certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.certificate-signature{
+display: flex;
+flex-direction: column-reverse;
+}
+.certificate-signature p {
+    margin: 5px 0;
+}
+
+.certificate-issuer h3 {
+    margin: 5px 0;
+    color: #16a085;
+}
